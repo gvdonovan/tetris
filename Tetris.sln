@@ -9,6 +9,10 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RamQuest.Tetris.Web", "RamQ
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RamQuest.IdentityServer", "RamQuest.IdentityServer\RamQuest.IdentityServer.xproj", "{2E2AA66F-F779-48EF-AE94-E0BF25485F51}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RamQuest.Core", "RamQuest.Core\RamQuest.Core.xproj", "{0FF41C54-4047-49C2-B839-A96133A68B4D}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RamQuest.EntityFrameworkCore", "RamQuest.EntityFrameworkCore\RamQuest.EntityFrameworkCore.xproj", "{AE4D7189-0D11-41FC-8899-1A151D32A554}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{2E2AA66F-F779-48EF-AE94-E0BF25485F51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E2AA66F-F779-48EF-AE94-E0BF25485F51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E2AA66F-F779-48EF-AE94-E0BF25485F51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FF41C54-4047-49C2-B839-A96133A68B4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FF41C54-4047-49C2-B839-A96133A68B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FF41C54-4047-49C2-B839-A96133A68B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FF41C54-4047-49C2-B839-A96133A68B4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE4D7189-0D11-41FC-8899-1A151D32A554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE4D7189-0D11-41FC-8899-1A151D32A554}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE4D7189-0D11-41FC-8899-1A151D32A554}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE4D7189-0D11-41FC-8899-1A151D32A554}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
