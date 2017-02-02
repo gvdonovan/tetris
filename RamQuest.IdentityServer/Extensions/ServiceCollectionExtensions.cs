@@ -1,4 +1,5 @@
 ﻿using IdentityServer4.Stores;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,8 @@ namespace RamQuest.IdentityServer.Extensions
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ClaimsPrincipalFactory>();
         }
 
         public static void RegisterIdentityServer(this IServiceCollection services)

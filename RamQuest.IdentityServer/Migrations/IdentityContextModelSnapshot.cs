@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using RamQuest.IdentityServer.Data;
 
 namespace RamQuest.IdentityServer.Migrations
@@ -146,7 +147,7 @@ namespace RamQuest.IdentityServer.Migrations
                     b.HasAnnotation("SqlServer:TableName", "UserTokens");
                 });
 
-            modelBuilder.Entity("RamQuest.IdentityServer.Data.Model.ApplicationUser", b =>
+            modelBuilder.Entity("RamQuest.IdentityServer.Model.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -160,6 +161,12 @@ namespace RamQuest.IdentityServer.Migrations
                         .HasAnnotation("MaxLength", 256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("FirstName")
+                        .HasAnnotation("MaxLength", 100);
+
+                    b.Property<string>("LastName")
+                        .HasAnnotation("MaxLength", 100);
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -210,7 +217,7 @@ namespace RamQuest.IdentityServer.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("RamQuest.IdentityServer.Data.Model.ApplicationUser")
+                    b.HasOne("RamQuest.IdentityServer.Model.ApplicationUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -218,7 +225,7 @@ namespace RamQuest.IdentityServer.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("RamQuest.IdentityServer.Data.Model.ApplicationUser")
+                    b.HasOne("RamQuest.IdentityServer.Model.ApplicationUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -231,7 +238,7 @@ namespace RamQuest.IdentityServer.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("RamQuest.IdentityServer.Data.Model.ApplicationUser")
+                    b.HasOne("RamQuest.IdentityServer.Model.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

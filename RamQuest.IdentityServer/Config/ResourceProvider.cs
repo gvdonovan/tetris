@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Security.Claims;
 using IdentityModel;
 using IdentityServer4.Models;
 
@@ -24,7 +25,16 @@ namespace RamQuest.IdentityServer.Config
                 new IdentityResource
                 {
                     Name = "TetrisIdentity",
-                    UserClaims = new[] {JwtClaimTypes.Name, JwtClaimTypes.Role, "module", "module.permissions"}
+                    UserClaims =
+                        new[]
+                        {
+                            JwtClaimTypes.Name,
+                            JwtClaimTypes.Role,
+                            ClaimTypes.GivenName,
+                            ClaimTypes.Surname,
+                            "module",
+                            "module.permissions"
+                        }
                 }
             };
         }

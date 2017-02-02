@@ -1,6 +1,7 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace RamQuest.IdentityServer.Migrations
 {
@@ -51,6 +52,8 @@ namespace RamQuest.IdentityServer.Migrations
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
+                    FirstName = table.Column<string>(maxLength: 100, nullable: true),
+                    LastName = table.Column<string>(maxLength: 100, nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
