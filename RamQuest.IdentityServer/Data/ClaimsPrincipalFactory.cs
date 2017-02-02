@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
+using IdentityModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -21,11 +22,11 @@ namespace RamQuest.IdentityServer.Data
 
             ((ClaimsIdentity) principal.Identity).AddClaims(new[]
             {
-                new Claim(ClaimTypes.GivenName, user.FirstName),
-                new Claim(ClaimTypes.Surname, user.LastName)
+                new Claim(JwtClaimTypes.GivenName, user.FirstName),
+                new Claim(JwtClaimTypes.FamilyName, user.LastName)                
             });
 
             return principal;
         }
-    }
+    }    
 }

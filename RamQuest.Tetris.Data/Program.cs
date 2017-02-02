@@ -1,4 +1,4 @@
-﻿namespace RamQuest.IdentityServer
+﻿namespace RamQuest.Tetris.Data
 {
     public class Program
     {

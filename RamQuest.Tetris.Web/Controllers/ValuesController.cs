@@ -7,17 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace RamQuest.Tetris.Web.Controllers
 {
-    [Authorize]
+    [Authorize("Execute")]
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        // GET api/values
+        // GET api/values        
+        [AllowAnonymous]
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
-
+        
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)

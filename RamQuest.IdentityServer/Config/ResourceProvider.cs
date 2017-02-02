@@ -12,7 +12,7 @@ namespace RamQuest.IdentityServer.Config
             return new[]
             {
                 new ApiResource("TetrisApi", "Tetris Web API",
-                    new[] {JwtClaimTypes.Name, JwtClaimTypes.Role, "office", "module"})
+                    new[] {JwtClaimTypes.Name, JwtClaimTypes.Role, "module"})
             };
         }
 
@@ -30,8 +30,8 @@ namespace RamQuest.IdentityServer.Config
                         {
                             JwtClaimTypes.Name,
                             JwtClaimTypes.Role,
-                            ClaimTypes.GivenName,
-                            ClaimTypes.Surname,
+                            JwtClaimTypes.GivenName,
+                            JwtClaimTypes.FamilyName,
                             "module",
                             "module.permissions"
                         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Authentication.ExtendedProtection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +37,11 @@ namespace RamQuest.Tetris.Web
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Execute", policy => policy.RequireClaim("role", "Administrator"));
+            });
 
             services.AddMvc();
         }
