@@ -1,4 +1,5 @@
-﻿using IdentityServer4.Stores;
+﻿using System.Reflection;
+using IdentityServer4.Stores;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -25,14 +26,21 @@ namespace RamQuest.IdentityServer.Extensions
             services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ClaimsPrincipalFactory>();
         }
 
-        public static void RegisterIdentityServer(this IServiceCollection services)
-        {            
+        public static void RegisterIdentityServer2(this IServiceCollection services, string connectionString)
+        {
+            var migrationsAssembly = typeof(Program).GetTypeInfo().Assembly.GetName().Name;
             services.AddSingleton<IClientStore, ClientStore>();
 
             services.AddIdentityServer()
-                .AddTemporarySigningCredential()                
-                .AddInMemoryApiResources(ResourceProvider.GetApiResources())                
-                .AddInMemoryIdentityResources(ResourceProvider.GetIdentityResources())                
+                .AddTemporarySigningCredential()
+                //.AddInMemoryApiResources(ResourceProvider.GetApiResources())                
+                //.AddInMemoryIdentityResources(ResourceProvider.GetIdentityResources())
+                .AddConfigurationStore(builder =>
+                    builder.UseSqlServer(connectionString, options =>
+                            options.MigrationsAssembly(migrationsAssembly)))
+                .AddOperationalStore(builder =>
+                    builder.UseSqlServer(connectionString, options =>
+                            options.MigrationsAssembly(migrationsAssembly)))
                 .AddAspNetIdentity<ApplicationUser>();
         }
 
@@ -40,7 +48,7 @@ namespace RamQuest.IdentityServer.Extensions
         {
             RegisterEntityFramework(services, connectionString);
             RegisterIdentity(services);
-            RegisterIdentityServer(services);
+            RegisterIdentityServer2(services, connectionString);
         }
     }
 }
