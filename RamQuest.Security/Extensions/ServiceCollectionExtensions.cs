@@ -1,12 +1,11 @@
 ﻿using System.Reflection;
-using IdentityServer4.EntityFramework.DbContexts;
+using IdentityServer4.EntityFramework.Stores;
 using IdentityServer4.Stores;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using RamQuest.Security.Config;
-using RamQuest.Security.Data;
+using RamQuest.Security.Data.Identity;
 using RamQuest.Security.Model;
 
 namespace RamQuest.Security.Extensions
@@ -15,13 +14,14 @@ namespace RamQuest.Security.Extensions
     {
         public static void RegisterEntityFramework(this IServiceCollection services, string connectionString)
         {
-            services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<Data.Identity.IdentityDbContext>(options => options.UseSqlServer(connectionString));
         }
 
         public static void RegisterIdentity(this IServiceCollection services)
         {
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<IdentityContext>()
+            services
+                .AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<Data.Identity.IdentityDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ClaimsPrincipalFactory>();
@@ -30,13 +30,13 @@ namespace RamQuest.Security.Extensions
         public static void RegisterIdentityServer(this IServiceCollection services, string connectionString)
         {
             var migrationsAssembly = typeof(Program).GetTypeInfo().Assembly.GetName().Name;
-            services.AddSingleton<IClientStore, ClientStore>();
+            services.AddSingleton<IClientStore, Data.IdentityServer.Config.ClientStore>();
 
             services.AddIdentityServer()
                 .AddTemporarySigningCredential()
 
-                .AddInMemoryApiResources(ResourceProvider.GetApiResources())                
-                .AddInMemoryIdentityResources(ResourceProvider.GetIdentityResources())
+                .AddInMemoryApiResources(Data.IdentityServer.Config.ResourceStore.GetApiResources())
+                .AddInMemoryIdentityResources(Data.IdentityServer.Config.ResourceStore.GetIdentityResources())
 
                 //.AddConfigurationStore(
                 //    builder => builder.UseSqlServer(connectionString, options => options.MigrationsAssembly(migrationsAssembly)),
@@ -47,10 +47,9 @@ namespace RamQuest.Security.Extensions
                     options => options.DefaultSchema = "oper")
 
                 .AddAspNetIdentity<ApplicationUser>();
-            
         }
 
-        public static void RegisterIdentityServices(this IServiceCollection services, string connectionString)
+        public static void RegisterSecurityServices(this IServiceCollection services, string connectionString)
         {
             RegisterEntityFramework(services, connectionString);
             RegisterIdentity(services);

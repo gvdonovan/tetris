@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using RamQuest.Security.Model;
 
-namespace RamQuest.Security.Data
+namespace RamQuest.Security.Data.Identity
 {
     public class ClaimsPrincipalFactory : UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>
     {
@@ -20,13 +20,13 @@ namespace RamQuest.Security.Data
         {
             var principal = await base.CreateAsync(user);
 
-            ((ClaimsIdentity) principal.Identity).AddClaims(new[]
+            ((ClaimsIdentity)principal.Identity).AddClaims(new[]
             {
                 new Claim(JwtClaimTypes.GivenName, user.FirstName),
-                new Claim(JwtClaimTypes.FamilyName, user.LastName)                
+                new Claim(JwtClaimTypes.FamilyName, user.LastName)
             });
 
             return principal;
         }
-    }    
+    }
 }

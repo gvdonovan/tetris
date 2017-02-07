@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using IdentityServer4.Models;
 using IdentityServer4.Stores;
 
-namespace RamQuest.Security.Config
+namespace RamQuest.Security.Data.IdentityServer.Config
 {
     public class ClientStore : IClientStore
     {

@@ -8,3 +8,4 @@ namespace RamQuest.Security.Model
         public string LastName { get; set; }
     }
 }
+

@@ -3,15 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using RamQuest.IdentityServer.Data;
+using RamQuest.Security.Data;
 
-namespace RamQuest.IdentityServer.Migrations
+namespace RamQuest.Security.Data.Migrations.Identity.IdentityDb
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20170202162905_InitialCreate")]
-    partial class InitialCreate
+    partial class IdentityContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")

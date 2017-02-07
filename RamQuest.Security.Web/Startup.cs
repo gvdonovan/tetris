@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using RamQuest.IdentityServer.Extensions;
+using RamQuest.Security.Extensions;
 
-namespace RamQuest.IdentityServer.Web
+namespace RamQuest.Security.Web
 {
     public class Startup
     {
@@ -24,7 +24,7 @@ namespace RamQuest.IdentityServer.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.RegisterIdentityServer(Configuration.GetConnectionString("DefaultConnection"));            
+            services.RegisterSecurityServices(Configuration.GetConnectionString("DefaultConnection"));            
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

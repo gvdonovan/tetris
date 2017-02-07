@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
-namespace RamQuest.IdentityServer.Web
+namespace RamQuest.Security.Web
 {
     public class Program
     {
