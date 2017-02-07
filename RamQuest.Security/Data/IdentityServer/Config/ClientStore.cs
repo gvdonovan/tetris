@@ -12,7 +12,7 @@ namespace RamQuest.Security.Data.IdentityServer.Config
         {
             new Client
             {
-                AccessTokenType = AccessTokenType.Reference,
+                //AccessTokenType = AccessTokenType.Reference,
                 ClientId = "Tetris",
                 ClientName = "Tetris Web Api",
                 AccessTokenLifetime = 60*60*24,

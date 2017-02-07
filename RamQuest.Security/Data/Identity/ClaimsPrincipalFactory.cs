@@ -23,7 +23,8 @@ namespace RamQuest.Security.Data.Identity
             ((ClaimsIdentity)principal.Identity).AddClaims(new[]
             {
                 new Claim(JwtClaimTypes.GivenName, user.FirstName),
-                new Claim(JwtClaimTypes.FamilyName, user.LastName)
+                new Claim(JwtClaimTypes.FamilyName, user.LastName),
+                new Claim(JwtClaimTypes.Email, user.Email) 
             });
 
             return principal;
