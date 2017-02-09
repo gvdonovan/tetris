@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace RamQuest.Security.Model
 {
@@ -6,6 +7,11 @@ namespace RamQuest.Security.Model
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+    }
+
+    public class ApplicationRole : IdentityRole
+    {
+        public string EnterpriseId { get; set; }
     }
 }
 

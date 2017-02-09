@@ -13,21 +13,6 @@ namespace RamQuest.Security.Data.Migrations.Identity.IdentityDb
                 name: "dbo");
 
             migrationBuilder.CreateTable(
-                name: "Roles",
-                schema: "dbo",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Roles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UserTokens",
                 schema: "dbo",
                 columns: table => new
@@ -40,6 +25,22 @@ namespace RamQuest.Security.Data.Migrations.Identity.IdentityDb
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Roles",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    EnterpriseId = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Roles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -166,13 +167,6 @@ namespace RamQuest.Security.Data.Migrations.Identity.IdentityDb
                 });
 
             migrationBuilder.CreateIndex(
-                name: "RoleNameIndex",
-                schema: "dbo",
-                table: "Roles",
-                column: "NormalizedName",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
                 schema: "dbo",
                 table: "RoleClaims",
@@ -195,6 +189,13 @@ namespace RamQuest.Security.Data.Migrations.Identity.IdentityDb
                 schema: "dbo",
                 table: "UserRoles",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                schema: "dbo",
+                table: "Roles",
+                column: "NormalizedName",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",

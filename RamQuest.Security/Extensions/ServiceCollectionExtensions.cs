@@ -20,7 +20,7 @@ namespace RamQuest.Security.Extensions
         public static void RegisterIdentity(this IServiceCollection services)
         {
             services
-                .AddIdentity<ApplicationUser, IdentityRole>()
+                .AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<Data.Identity.IdentityDbContext>()
                 .AddDefaultTokenProviders();
 

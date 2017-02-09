@@ -8,7 +8,7 @@ using RamQuest.Security.Model;
 
 namespace RamQuest.Security.Data.Identity
 {
-    public class IdentityDbContext : IdentityDbContext<ApplicationUser>
+    public class IdentityDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public IdentityDbContext(DbContextOptions<IdentityDbContext> options) : base(options)
         {
@@ -18,7 +18,8 @@ namespace RamQuest.Security.Data.Identity
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<IdentityRole>().ForSqlServerToTable("Roles", "dbo");
+            //modelBuilder.Entity<IdentityRole>().ForSqlServerToTable("Roles", "dbo");
+            modelBuilder.Entity<ApplicationRole>().ForSqlServerToTable("Roles", "dbo");
             modelBuilder.Entity<IdentityRoleClaim<string>>().ForSqlServerToTable("RoleClaims", "dbo");
             modelBuilder.Entity<ApplicationUser>().ForSqlServerToTable("Users", "dbo");
             modelBuilder.Entity<IdentityUserClaim<string>>().ForSqlServerToTable("UserClaims", "dbo");

@@ -8,7 +8,7 @@ using RamQuest.Security.Data.Identity;
 namespace RamQuest.Security.Data.Migrations.Identity.IdentityDb
 {
     [DbContext(typeof(IdentityDbContext))]
-    [Migration("20170207161111_InitialIdentityDbMigration")]
+    [Migration("20170209215838_InitialIdentityDbMigration")]
     partial class InitialIdentityDbMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -16,33 +16,6 @@ namespace RamQuest.Security.Data.Migrations.Identity.IdentityDb
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Name")
-                        .HasAnnotation("MaxLength", 256);
-
-                    b.Property<string>("NormalizedName")
-                        .HasAnnotation("MaxLength", 256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasName("RoleNameIndex");
-
-                    b.ToTable("AspNetRoles");
-
-                    b.HasAnnotation("SqlServer:Schema", "dbo");
-
-                    b.HasAnnotation("SqlServer:TableName", "Roles");
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
@@ -148,6 +121,35 @@ namespace RamQuest.Security.Data.Migrations.Identity.IdentityDb
                     b.HasAnnotation("SqlServer:TableName", "UserTokens");
                 });
 
+            modelBuilder.Entity("RamQuest.Security.Model.ApplicationRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("EnterpriseId");
+
+                    b.Property<string>("Name")
+                        .HasAnnotation("MaxLength", 256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasAnnotation("MaxLength", 256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex");
+
+                    b.ToTable("AspNetRoles");
+
+                    b.HasAnnotation("SqlServer:Schema", "dbo");
+
+                    b.HasAnnotation("SqlServer:TableName", "Roles");
+                });
+
             modelBuilder.Entity("RamQuest.Security.Model.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -208,7 +210,7 @@ namespace RamQuest.Security.Data.Migrations.Identity.IdentityDb
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
+                    b.HasOne("RamQuest.Security.Model.ApplicationRole")
                         .WithMany("Claims")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -232,7 +234,7 @@ namespace RamQuest.Security.Data.Migrations.Identity.IdentityDb
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
+                    b.HasOne("RamQuest.Security.Model.ApplicationRole")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);

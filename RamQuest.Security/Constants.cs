@@ -2,6 +2,6 @@
 {
     public class Constants
     {
-        public const string DevConnectionString = "Server=(localdb)\\mssqllocaldb;Database=RQ-Security;Trusted_Connection=True;MultipleActiveResultSets=true";
+        public const string DevConnectionString = "Server=(localdb)\\mssqllocaldb;Database=RQ-ApplicationRole-POC;Trusted_Connection=True;MultipleActiveResultSets=true";
     }
 }
