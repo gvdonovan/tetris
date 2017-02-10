@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using RamQuest.Tetris.Web.Controllers;
 
 namespace RamQuest.Tetris.Web
 {
@@ -42,6 +43,10 @@ namespace RamQuest.Tetris.Web
             {
                 options.AddPolicy("Execute", policy => policy.RequireClaim("role", "Administrator"));
             });
+            
+            var cf = new CommandFactory();
+            services.AddTransient<ICommandFactory, CommandFactory>();
+            services.AddScoped<CommandValidationFilter>();
 
             services.AddMvc();
         }
