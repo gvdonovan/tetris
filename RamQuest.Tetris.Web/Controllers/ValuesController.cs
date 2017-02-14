@@ -71,13 +71,13 @@ namespace RamQuest.Tetris.Web.Controllers
 
             }
 
-            var foo = JsonConvert.DeserializeObject(payload.Contract.ToString(), Type.GetType("RamQuest.Tetris.Web.Controllers"));
+            var foo = JsonConvert.DeserializeObject(payload.Contract.ToString(), Type.GetType("RamQuest.Tetris.Web.Controllers.Foo"));
 
             //TOD0: get command and lookup factory
             //var factory = new FooFactory();
             //return Json(factory.Deserialize(payload.Contract.ToString()));
 
-            return Json(foo);
+            return new CommandExecutionResult(new {name = "greg", contract = foo});
 
         }
     }
@@ -133,8 +133,7 @@ namespace RamQuest.Tetris.Web.Controllers
                 }
             }
 
-            results.Add(new ValidationResult("Prop1 must be larger than Prop2"));
-            
+            results.Add(new ValidationResult("Prop1 must be larger than Prop2"));            
         }
     }
 
@@ -232,5 +231,15 @@ namespace RamQuest.Tetris.Web.Controllers
         {
             string s = "";
         }
+    }
+
+    public class CommandExecutionResult : ObjectResult
+    {
+        public CommandExecutionResult(object value) : base(value)
+        {
+            Name = "greg";
+        }
+
+        public string Name { get; set; }
     }
 }

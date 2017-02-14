@@ -9,9 +9,9 @@ using RamQuest.Security.Model;
 
 namespace RamQuest.Security.Data.Identity
 {
-    public class ClaimsPrincipalFactory : UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>
+    public class ClaimsPrincipalFactory : UserClaimsPrincipalFactory<ApplicationUser, ApplicationRole>
     {
-        public ClaimsPrincipalFactory(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,
+        public ClaimsPrincipalFactory(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager,
             IOptions<IdentityOptions> optionsAccessor) : base(userManager, roleManager, optionsAccessor)
         {
         }
